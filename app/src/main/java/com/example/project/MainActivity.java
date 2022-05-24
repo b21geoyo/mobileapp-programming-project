@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class MainActivity extends AppCompatActivity implements JsonTask.JsonTaskListener {
 
-    private final String JSON_URL = "";
+    private final String JSON_URL = "https://mobprog.webug.se/json-api?login=b21geoyo";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
 
         new JsonTask(this).execute(JSON_URL);
 
-        RecyclerView recyclerView;
+        //RecyclerView recyclerView;
 
     }
 
