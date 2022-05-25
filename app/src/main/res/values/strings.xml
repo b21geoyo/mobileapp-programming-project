@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Project</string>
+    <string name="textview">About</string>
+    <string name="textview2">
+        Min applikation är avsedd för personer som är intresserade av astronomi och universum.
+        Planeter är en viktig sak inom astronomi.
+        Applikationen kan användas för att se fakta om de mer populära planeterna i vårt solsystem som mänskligheten potentiellt kan nå en dag i framtiden.
+    </string>
 </resources>
