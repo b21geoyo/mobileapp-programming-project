@@ -10,6 +10,14 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity implements JsonTask.JsonTaskListener {
 
     private final String JSON_URL = "https://mobprog.webug.se/json-api?login=b21geoyo";
@@ -40,6 +48,12 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
 
     @Override
     public void onPostExecute(String json) {
-        Log.d("MainActivity", json);
+        Log.d("TEST", "onPostExecute: " + json);
+        Gson gson = new Gson();
+        Type type = new TypeToken<List<Items>>(){}.getType();
+        ArrayList<Items> tmpList = gson.fromJson(json, type);
+        Log.d("TEST", "onPostExecute: " + tmpList.toString());
+        myAdapter.setItemsList(tmpList);
+        myAdapter.notifyDataSetChanged();
     }
 }
