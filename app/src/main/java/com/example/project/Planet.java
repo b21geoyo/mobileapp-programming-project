@@ -1,6 +1,6 @@
 package com.example.project;
 
-public class Items {
+public class Planet {
     public String name;
     public String size;
     public String category;
