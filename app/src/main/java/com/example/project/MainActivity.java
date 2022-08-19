@@ -22,8 +22,7 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
 
     private final String JSON_URL = "https://mobprog.webug.se/json-api?login=b21geoyo";
     private RecyclerView recyclerView;
-    private MyAdapter myAdapter;
-    private FloatingActionButton fab;
+    private RecyclerViewAdapter recyclerViewAdapter;
 
 
     @Override
@@ -33,11 +32,11 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        List<Items> itemsList = new ArrayList<>();
-        myAdapter = new MyAdapter(itemsList);
+        List<Planet> planetList = new ArrayList<>();
+        recyclerViewAdapter = new RecyclerViewAdapter(planetList);
 
         recyclerView = findViewById(R.id.mainRecyclerView);
-        recyclerView.setAdapter(myAdapter);
+        recyclerView.setAdapter(recyclerViewAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         new JsonTask(this).execute(JSON_URL);
@@ -54,12 +53,12 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
 
     @Override
     public void onPostExecute(String json) {
-        Log.d("TEST", "onPostExecute: " + json);
+        Log.d("data", "onPostExecute: " + json);
         Gson gson = new Gson();
-        Type type = new TypeToken<List<Items>>(){}.getType();
-        ArrayList<Items> tmpList = gson.fromJson(json, type);
-        Log.d("TEST", "onPostExecute: " + tmpList.toString());
-        myAdapter.setItemsList(tmpList);
-        myAdapter.notifyDataSetChanged();
+        Type type = new TypeToken<List<Planet>>(){}.getType();
+        ArrayList<Planet> planets = gson.fromJson(json, type);
+        Log.d("data", "onPostExecute: " + planets.toString());
+        recyclerViewAdapter.setPlanets(planets);
+        recyclerViewAdapter.notifyDataSetChanged();
     }
 }
